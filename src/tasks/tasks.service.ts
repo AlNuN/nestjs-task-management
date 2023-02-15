@@ -54,9 +54,7 @@ export class TasksService {
     this.tasks = this.tasks.filter((task) => task.id !== id)
   }
 
-  updateTaskStatus(updateTaskStatusDto: UpdateTaskStatusDto): Task {
-    const {id, status} = updateTaskStatusDto;
-
+  updateTaskStatus(id: string, status: TaskStatus): Task {
     this.tasks = this.tasks.map((task) => {
       if (task.id === id) task.status = status
       return task
