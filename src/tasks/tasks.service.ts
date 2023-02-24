@@ -56,12 +56,12 @@ export class TasksService {
     }
   }
 
-  // updateTaskStatus(id: string, status: TaskStatus): Task {
-  //   this.tasks = this.tasks.map((task) => {
-  //     if (task.id === id) task.status = status
-  //     return task
-  //   });
+  async updateTaskStatus(id: string, status: TaskStatus): Promise<Task> {
+    const task = await this.getTaskById(id)
 
-  //   return this.getTaskById(id)
-  // }
+    task.status = status
+    await this.tasksRepository.save(task)
+
+    return task
+  }
 }
